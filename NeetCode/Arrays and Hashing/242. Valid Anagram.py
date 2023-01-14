@@ -1,5 +1,8 @@
 class Solution:
-    def validAnagram(self, s: str, t: str) -> bool:
+    def isAnagram(self, s: str, t: str) -> bool:
+
+        if len(s) != len(t):
+            return False
 
         flag: bool = False
 
@@ -17,4 +20,4 @@ class Solution:
 
 va: Solution = Solution()
 
-print(va.validAnagram("anagram", "anagram"))
+print(va.isAnagram("anagram", "anagram"))
