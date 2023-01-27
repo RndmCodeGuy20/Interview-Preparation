@@ -18,6 +18,6 @@ class Solution:
         return flag
 
 
-va: Solution = Solution()
+solution: Solution = Solution()
 
-print(va.isAnagram("anagram", "anagram"))
+print(solution.isAnagram("anagram", "anagram"))
