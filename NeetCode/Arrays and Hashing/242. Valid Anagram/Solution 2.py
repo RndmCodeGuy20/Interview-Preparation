@@ -22,4 +22,4 @@ class Solution:
 
 solution: Solution = Solution()
 
-print(solution.isAnagram("cat", "rat"))
+print(solution.isAnagram("eat", "tan"))
