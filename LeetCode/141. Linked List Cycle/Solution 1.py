@@ -1,4 +1,4 @@
-from LeetCode.LC_Data_Structures import LinkedList, Node
+from LeetCode.LC_Data_Structures import Node
 
 
 class Solution:

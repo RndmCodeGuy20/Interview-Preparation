@@ -1,12 +1,9 @@
-class Node:
-    def __init__(self, x: float, next=None):
-        self.val = x
-        self.next = next
+from LeetCode.LC_Data_Structures.Node import Node
 
 
 class LinkedList:
-    def __init__(self):
-        self.head = None
+    def __init__(self, head=None):
+        self.head = head
         self.length = 0
 
     def addNode(self, x: float):
@@ -28,6 +25,19 @@ class LinkedList:
 
     def getLength(self):
         return self.length
+
+    def ArrayToLL(self, array):
+        if len(array) == 0:
+            return None
+        head = Node(array[0], None)
+
+        ptr = head
+        for i in array[1:]:
+            new = Node(i, None)
+            ptr.next = new
+            ptr = ptr.next
+
+        return head
 
 # if __name__ == '__main__':
 #     linkedList = LinkedList()
