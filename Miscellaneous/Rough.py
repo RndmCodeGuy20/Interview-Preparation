@@ -1,7 +1,18 @@
-arr = [5, 10, 10, 15, 20, 25]
+nums1 = [1, 2, 3]
+nums2 = [2, 4, 6]
 
-i = 3
+rez = []
+temp = []
+for i in nums1:
+    if i not in nums2:
+        temp.append(i)
 
-while i <= len(arr) - 1:
-    print(i, arr[i])
-    i += 1
+rez.append(temp)
+temp = []
+for i in nums2:
+    if i not in nums1:
+        temp.append(i)
+
+rez.append(temp)
+
+print(rez)
