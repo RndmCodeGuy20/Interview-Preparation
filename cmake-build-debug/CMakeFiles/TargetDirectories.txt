@@ -1,2 +1,0 @@
-D:/Interview Preparation/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Interview Preparation/cmake-build-debug/CMakeFiles/rebuild_cache.dir

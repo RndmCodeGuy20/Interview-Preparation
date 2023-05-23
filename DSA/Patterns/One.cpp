@@ -2,8 +2,8 @@
 using namespace std;
 
 int main(){
-    for(int i =0; i < 6; i++){
-        for(int j = 0; j < 6; j++){
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
             cout << "* ";
         }
         cout << endl;
