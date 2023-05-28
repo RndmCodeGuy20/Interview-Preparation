@@ -11,6 +11,22 @@ struct StaticArray {
     int length = 5;
 };
 
+struct DynamicArray {
+    int *base;
+    int size;
+    int length;
+};
+
+int *GenerateArray(int arr[], struct DynamicArray &dynamicArray) {
+    dynamicArray.base = new int[dynamicArray.length];
+
+    for (int i = 0; i < dynamicArray.length; ++i) {
+        dynamicArray.base[i] = arr[i];
+    }
+
+    return dynamicArray.base;
+}
+
 void DisplayStaticArray() {
     struct StaticArray staticArray = {{1, 2, 3, 4, 5}, 20, 5};
 
@@ -19,7 +35,26 @@ void DisplayStaticArray() {
     }
 }
 
+struct DynamicArray DisplayDynamicArray() {
+    struct DynamicArray dynamicArray;
+    dynamicArray.length = 10;
+    dynamicArray.size = 20;
+
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    dynamicArray.base = GenerateArray(arr, dynamicArray);
+    cout << dynamicArray.length << " " << dynamicArray.size << " \n";
+
+    return dynamicArray;
+}
+
+
 int main() {
-    DisplayStaticArray();
+//    DisplayStaticArray();
+    struct DynamicArray array = DisplayDynamicArray();
+
+    for (int i = 0; i < array.length; ++i) {
+        printf("%d ", array.base[i]);
+    }
     return 0;
 }
