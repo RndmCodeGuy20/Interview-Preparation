@@ -63,6 +63,38 @@ public:
         Node *newNode = new Node(el, ptr->next);
         ptr->next = newNode;
     }
+
+    void DeleteElBegin() {
+        head = head->next;
+    }
+
+    void DeleteElPosition(int pos) {
+        if (pos == 1) {
+            DeleteElBegin();
+            return;
+        }
+
+        Node *ptr = head;
+
+        for (int i = 0; i < pos - 2; i++) {
+            ptr = ptr->next;
+        }
+
+        ptr->next = ptr->next->next;
+    }
+
+    void ReverseLList() {
+        Node *p, *q, *r;
+        p = head;
+        q = r = NULL;
+
+        while (p != NULL) {
+            r = q;
+            q = p;
+            p = p->next;
+            q->next = r;
+        }
+    }
 };
 
 int main() {
@@ -71,7 +103,11 @@ int main() {
     LinkedList ll(arr, 5);
 
 //    ll.InsertElBegin(20);
-    ll.InsertAtPosition(20, 4);
+//    ll.InsertAtPosition(20, 4);
+//    ll.DeleteElBegin();
+//    ll.DeleteElPosition(3);
+
+    ll.ReverseLList();
 
     ll.DisplayLinkedList();
 
