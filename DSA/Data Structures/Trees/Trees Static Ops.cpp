@@ -13,7 +13,7 @@ public:
     int data;
     Node *right;
 
-    Node(int data, Node *left = NULL, Node *right = NULL) {
+    Node(int data, Node *left, Node *right) {
         this->data = data;
         this->left = left;
         this->right = right;
@@ -24,17 +24,36 @@ class Tree {
 public:
     Node *root;
 
-    Tree(int arr[]) {
-        root = new Node(arr[0], NULL, NULL);
-        Node *ptr;
+    Tree() {
+        root = BuildTree();
+    }
 
-        Queue<INFINITY>;
+    Node *BuildTree() {
+        int data;
+        cin >> data;
+        Node *q = new Node(data, NULL, NULL);
+        if (data == -1) {
+            return NULL;
+        }
+        q->left = BuildTree();
+        q->right = BuildTree();
 
+        return q;
+    }
+
+    void PreOrder(Node *q) {
+        if (q == NULL) return;
+        cout << q->data << " ";
+        PreOrder(q->left);
+        PreOrder(q->right);
     }
 };
 
-int main() {
 
+int main() {
+    Tree tree;
+
+    tree.PreOrder(tree.root);
 
     return 0;
 }
