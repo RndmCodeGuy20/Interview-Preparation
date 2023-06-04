@@ -7,10 +7,14 @@ using namespace std;
 
 int main() {
     int num = 3121;
+    int n, reverse = 0;
 
-    int n = num % 10;
+    while (num) {
+        n = num % 10;
+        reverse = reverse * 10 + n;
+        num /= 10;
+    }
 
-    cout << n;
-
+    cout << reverse;
     return 0;
 }

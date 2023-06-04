@@ -31,6 +31,8 @@ public:
     Node *BuildTree() {
         int data;
         cin >> data;
+
+//        int data = input[index];
         Node *q = new Node(data, NULL, NULL);
         if (data == -1) {
             return NULL;
@@ -47,13 +49,51 @@ public:
         PreOrder(q->left);
         PreOrder(q->right);
     }
+
+    void PostOrder(Node *q) {
+        if (q == NULL) return;
+        PostOrder(q->left);
+        PostOrder(q->right);
+        cout << q->data << " ";
+    }
+
+    void InOrder(Node *q) {
+        if (q == NULL) return;
+        InOrder(q->left);
+        cout << q->data;
+        InOrder(q->right);
+    }
+
+    void LevelOrder(Node *q) {
+        queue<Node *> queue;
+        Node *temp;
+
+        if (!q) return;
+
+        queue.push(q);
+
+        while (!queue.empty()) {
+            temp = queue.front();
+            queue.pop();
+            cout << temp->data;
+
+            if (temp->left) {
+                queue.push(temp->left);
+            }
+            if (temp->right) {
+                queue.push(temp->right);
+            }
+        }
+    }
 };
 
 
 int main() {
     Tree tree;
-
-    tree.PreOrder(tree.root);
+//    tree.PreOrder(tree.root);
+//    tree.PostOrder(tree.root);
+//    tree.InOrder(tree.root);
+    tree.LevelOrder(tree.root);
 
     return 0;
 }
