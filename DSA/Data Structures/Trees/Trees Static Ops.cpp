@@ -23,6 +23,7 @@ public:
 class Tree {
 public:
     Node *root;
+//    int array[11] = {1, 2, 3, 4, 5, -1, -1, -1, -1, -1, -1};
 
     Tree() {
         root = BuildTree();
