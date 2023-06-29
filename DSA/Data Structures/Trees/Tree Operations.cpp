@@ -23,7 +23,7 @@ public:
     Node *root;
 
     Tree() {
-        root = BuildTree();
+        BuildTreeLO();
     }
 
     Node *BuildTree() {
@@ -40,8 +40,10 @@ public:
         return q;
     }
 
-    // level order traversal with newline after every level is completed. - yahi karna tha to laude mai hi nahi karleta.
-    // tuze kyu karne lagata, tu thoda sa behen
+    void BuildTreeLO() {
+
+    }
+
     void LevelOrderNewLine(Node *ptr) {
         queue<Node *> Q;
         Node *temp;
@@ -51,8 +53,8 @@ public:
             temp = Q.front();
             Q.pop();
             if (temp == nullptr) {
-                cout << endl;
                 if (!Q.empty()) {
+                    cout << endl;
                     Q.push(nullptr);
                 }
             } else {
@@ -256,7 +258,6 @@ public:
         while (!Q.empty()) {
             temp = Q.front();
             Q.pop();
-            cout << temp->data;
 
             if (!temp->left && !temp->right)
                 count++;
@@ -265,6 +266,21 @@ public:
         }
 
         return count;
+    }
+
+    int NumberOfLeafNodesRecursive(Node *ptr) {
+        if (!ptr) {
+            return 0;
+        }
+
+        if (!ptr->left && !ptr->right) {
+            return 1;
+        }
+
+        int left = NumberOfLeafNodesRecursive(ptr->left);
+        int right = NumberOfLeafNodesRecursive(ptr->right);
+
+        return left + right;
     }
 
     bool IdenticalTree(Node *ptr1, Node *ptr2) {
@@ -300,11 +316,91 @@ public:
             PathFromRootToLeaf(ptr->right, path, pathLen);
         }
     }
+
+    int NumberOfFullNodes(Node *ptr) {
+        if (!ptr) {
+            return 0;
+        }
+
+        int left = NumberOfFullNodes(ptr->left);
+        int right = NumberOfFullNodes(ptr->right);
+
+        if (ptr->left && ptr->right) {
+            return left + right + 1;
+        } else {
+            return left + right;
+        }
+    }
+
+    int CountLevels(Node *ptr) {
+        int levels = 0;
+
+        queue<Node *> Q;
+        Node *temp;
+
+        Q.push(ptr);
+        Q.push(nullptr);
+
+        while (!Q.empty()) {
+            temp = Q.front();
+            Q.pop();
+
+            if (temp == nullptr) {
+                if (!Q.empty()) {
+                    Q.push(nullptr);
+                }
+                levels++;
+            } else {
+                if (temp->left) Q.push(temp->left);
+                if (temp->right) Q.push(temp->right);
+            }
+        }
+
+        return levels;
+    }
+
+    int LevelWithMaximumSum(Node *ptr) {
+        if (!ptr) return 0;
+
+        Node *temp;
+        int level = 0, maxLevel = 0, currSum = 0, maxSum = 0;
+
+        queue<Node *> Q;
+
+        Q.push(ptr);
+        Q.push(nullptr);
+
+        while (!Q.empty()) {
+            temp = Q.front();
+            Q.pop();
+
+            if (!temp) {
+                if (currSum > maxSum) {
+                    maxSum = currSum;
+                    maxLevel = level;
+                }
+
+                currSum = 0;
+
+                if (!Q.empty()) {
+                    Q.push(nullptr);
+                    level++;
+                }
+
+            } else {
+                currSum += temp->data;
+                if (temp->left) Q.push(temp->left);
+                if (temp->right) Q.push(temp->right);
+            }
+        }
+        return maxLevel;
+    }
 };
 
 int main() {
     Tree tree;
-    tree.LevelOrder(tree.root);
+    tree.LevelOrderNewLine(tree.root);
+    cout << endl;
 //    Tree tree1;
 //
 //    cout << endl << endl;
@@ -339,10 +435,14 @@ int main() {
 
 //    cout << tree.DeepestNode(tree.root)->data;
 
-//    cout << tree.NumberofLeafNodes(tree.root);
+    cout << tree.NumberofLeafNodes(tree.root);
 
-    int path[10];
-    tree.PathFromRootToLeaf(tree.root, path, 0);
+//    int path[10];
+//    tree.PathFromRootToLeaf(tree.root, path, 0);
 
+//    cout << endl;
+//    cout << tree.NumberOfLeafNodesRecursive(tree.root);
+//    cout << tree.NumberOfFullNodes(tree.root);
+//    cout << tree.CountLevels(tree.root);
     return 0;
 }
