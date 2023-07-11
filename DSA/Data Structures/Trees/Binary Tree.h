@@ -33,6 +33,34 @@ class Tree {
 public:
     Node *root;
 
+    Tree(vector<int> nums) {
+        queue<Node *> Q;
+        Node *temp, *newNode;
+        int i = 0;
+
+        root = new Node(nums[i], nullptr, nullptr);
+        Q.push(root);
+
+        while (!Q.empty() && i < nums.size() - 1) {
+            i++;
+            temp = Q.front();
+            Q.pop();
+
+            if (nums[i] != -1) {
+                newNode = new Node(nums[i], nullptr, nullptr);
+                temp->left = newNode;
+                Q.push(newNode);
+            }
+
+            i++;
+            if (nums[i] != -1) {
+                newNode = new Node(nums[i], nullptr, nullptr);
+                temp->right = newNode;
+                Q.push(newNode);
+            }
+        }
+    }
+
     Tree() {
         queue<Node *> Q;
         int val;

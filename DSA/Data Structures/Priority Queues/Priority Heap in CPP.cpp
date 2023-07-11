@@ -29,13 +29,14 @@ public:
     }
 };
 
-class MinHeap : private Heap {
+class MinHeap : public Heap {
 public:
     MinHeap(int capacity) : Heap(capacity) {};
 
     MinHeap(int capacity, vector<int> arr) : Heap(capacity) {
         for (int i = 2; i < arr.size(); ++i) {
             this->InsertElement(arr[i]);
+            this->size++;
         }
     }
 
@@ -87,8 +88,12 @@ public:
 
 int main() {
 
-    MinHeap minHeap(5);
-    MaxHeap maxHeap(5);
+    MinHeap minHeap(5, {1, 2, 3, 4, 5});
+//    MaxHeap maxHeap(5);
+
+    for (int i = 0; i < minHeap.size; ++i) {
+        cout << minHeap.heap[i] << " ";
+    }
 
     return 0;
 }

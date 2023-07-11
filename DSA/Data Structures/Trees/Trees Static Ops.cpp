@@ -29,6 +29,34 @@ public:
         root = BuildTree();
     }
 
+    Tree(vector<int> nums) {
+        queue<Node *> Q;
+        Node *temp, *newNode;
+        int i = 0;
+
+        root = new Node(nums[i], nullptr, nullptr);
+        Q.push(root);
+
+        while (!Q.empty() && i < nums.size() - 1) {
+            i++;
+            temp = Q.front();
+            Q.pop();
+
+            if (nums[i] != -1) {
+                newNode = new Node(nums[i], nullptr, nullptr);
+                temp->left = newNode;
+                Q.push(newNode);
+            }
+
+            i++;
+            if (nums[i] != -1) {
+                newNode = new Node(nums[i], nullptr, nullptr);
+                temp->right = newNode;
+                Q.push(newNode);
+            }
+        }
+    }
+
     Node *BuildTree() {
         int data;
         cin >> data;
@@ -76,7 +104,7 @@ public:
         while (!queue.empty()) {
             temp = queue.front();
             queue.pop();
-            cout << temp->data;
+            cout << temp->data << " ";
 
             if (temp->left) {
                 queue.push(temp->left);
@@ -90,7 +118,8 @@ public:
 
 
 int main() {
-    Tree tree;
+
+    Tree tree({1, -1, 3, 4, 5});
 //    tree.PreOrder(tree.root);
 //    tree.PostOrder(tree.root);
 //    tree.InOrder(tree.root);

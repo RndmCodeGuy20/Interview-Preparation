@@ -131,6 +131,6 @@ int main() {
 //    cout << endl;
 
     vector<bool> visited(graph.rows, false);
-    graph.DFSRecursive(1, visited); // DFS Recursive Traversal
+    graph.DFSRecursive(3, visited); // DFS Recursive Traversal
     return 0;
 }
