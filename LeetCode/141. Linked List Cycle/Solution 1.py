@@ -1,8 +1,8 @@
-from LeetCode.LC_Data_Structures import Node
+from LeetCode.LC_Data_Structures import Node, LinkedList
 
 
 class Solution:
-    def hasCycle(self, head: LinkedList[Node]) -> bool:
+    def hasCycle(self, head: Node) -> bool:
         pass
 
 

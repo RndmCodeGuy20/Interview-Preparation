@@ -2,3 +2,24 @@
  * Created by SHANTANU on 13-12-2023.
  * Topic - 
 */
+#include <bits/stdc++.h>
+#include <iostream>
+
+
+using namespace std;
+
+class Solution {
+public:
+    string gcdOfStrings(string str1, string str2) {
+        return (str1 + str2 == str2 + str1) ?
+               str1.substr(0, gcd(str1.size(), str2.size())) : "";
+    }
+};
+
+int main() {
+
+    Solution solution;
+
+
+    return 0;
+}
