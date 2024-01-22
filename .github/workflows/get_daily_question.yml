@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Daily LeetCode Problem
-        uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.1.0
+        uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.2.1
