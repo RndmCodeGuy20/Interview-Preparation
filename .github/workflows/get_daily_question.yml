@@ -3,6 +3,7 @@ name: Use Daily LeetCode Problem Workflow
 on:
   schedule:
     - cron: "0 1 * * *"
+  workflow_dispatch:
 
 jobs:
   use-daily-lc-problem:
