@@ -12,7 +12,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Get LeetCode Problem
-      uses: RndmCodeGuy20/Daily-LC-Problem-Action@master
+      uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.3.0
     - name: Commit and push changes
       run: |
         git config --global user.name 'RndmCodeGuy20'
