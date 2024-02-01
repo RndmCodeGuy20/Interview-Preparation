@@ -21,7 +21,7 @@ jobs:
         uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.3.0
 
       - name: Commit and Push
-        uses: |
+        run: |
           git config --global user.name "rndmcodeguy"
           git config --global user.email "shantanu.mane.200@outlook.com"
           git add .
