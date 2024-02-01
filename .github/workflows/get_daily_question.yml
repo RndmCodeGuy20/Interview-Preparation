@@ -9,7 +9,21 @@ jobs:
   use-daily-lc-problem:
     runs-on: ubuntu-latest
     steps:
-      - name: Get LeetCode Problem
-        uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.3.0
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 20
+
+      - name: Get LeetCode Problem
+        uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.3.0
+
+      - name: Commit and Push
+        uses: |
+          git config --global user.name "rndmcodeguy"
+          git config --global user.email "shantanu.mane.200@outlook.com"
+          git add .
+          git commit -m "docs ✨ new pic added : master"
+          git push
