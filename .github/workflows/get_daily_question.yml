@@ -11,3 +11,5 @@ jobs:
     steps:
       - name: Get LeetCode Problem
         uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.3.0
+        with:
+          node-version: 20
