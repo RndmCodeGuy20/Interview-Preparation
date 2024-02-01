@@ -1,29 +1,36 @@
-name: Use Daily LeetCode Problem Workflow
+name: Get Daily LeetCode Problem
 
 on:
   schedule:
-    - cron: "0 1 * * *"
+    - cron: '0 1 * * *'
   workflow_dispatch:
 
 jobs:
-  use-daily-lc-problem:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 20
 
-      - name: Get LeetCode Problem
-        uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.3.0
+    - name: Install dependencies
+      run: npm install
 
-      - name: Commit and Push
-        run: |
-          git config --global user.name "rndmcodeguy"
-          git config --global user.email "shantanu.mane.200@outlook.com"
-          git add .
-          git commit -m "docs ✨ new pic added : master"
-          git push
+    - name: Run script
+      run: npm run start
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'RndmCodeGuy20'
+        git config --global user.email 'shantanu.mane.200@outlook.com'
+        git status
+        git add -A
+        git commit -m "chore(action) 🦈: today's daily leetcode question added"
+        git push origin LC-04-unit-tests
