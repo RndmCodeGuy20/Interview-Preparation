@@ -16,7 +16,9 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Get Daily LeetCode Problem
-      uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.3.2
+      uses: RndmCodeGuy20/Daily-LC-Problem-Action@LC-05-langauge-snippets
+      with: 
+        lang_choice: 'c++'
             
     - name: Commit and push changes
       run: |
