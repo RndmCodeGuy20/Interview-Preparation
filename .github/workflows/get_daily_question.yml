@@ -18,7 +18,7 @@ jobs:
     - name: Get Daily LeetCode Problem
       uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.3.4
       with: 
-        lang_choice: 'C++'
+        lang_choice: 'Python3'
         # Strictly use one of these options : ["C++", "C", "Python3", "JavaScript", "Java"]
             
     - name: Commit and push changes
