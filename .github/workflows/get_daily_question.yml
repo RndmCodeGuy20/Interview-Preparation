@@ -29,3 +29,9 @@ jobs:
         git add .
         git commit -m "chore(action) 🦈: today's daily leetcode question added"
         git push
+        
+    - name: Report Status to Slack
+      run: |
+        curl -X POST -H 'Content-type: application/json' --data '{
+        "text": "🚀 *GitHub Action Update*\n🛠 *Workflow:* `${{ github.workflow }}`\n📂 *Repository:* `${{ github.repository }}`\n🔁 *Run #:* `${{ github.run_number }}`\n📊 *Status:* *${{ job.status }}*\n🔗 <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Logs>"
+        }' ${{ secrets.SLACK_WEBHOOK_URL }}
