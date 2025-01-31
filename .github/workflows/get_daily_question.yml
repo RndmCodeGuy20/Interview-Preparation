@@ -16,7 +16,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Get Daily LeetCode Problem
-      uses: RndmCodeGuy20/Daily-LC-Problem-Action@v2.2.0
+      uses: RndmCodeGuy20/Daily-LC-Problem-Action@v2.2.1
       with: 
         lang_choice: 'C++'
         # Strictly use one of these options : ["C++", "C", "Python3", "JavaScript", "Java"]
