@@ -2,7 +2,7 @@ name: Get Daily LeetCode Problem
 
 on:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: "0 1 * * *"
   workflow_dispatch:
 
 jobs:
@@ -10,28 +10,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Get Daily LeetCode Problem
-      uses: RndmCodeGuy20/Daily-LC-Problem-Action@v2.2.1
-      with: 
-        lang_choice: 'C++'
-        # Strictly use one of these options : ["C++", "C", "Python3", "JavaScript", "Java"]
-            
-    - name: Commit and push changes
-      run: |
-        git config --global user.name 'RndmCodeGuy20'
-        git config --global user.email 'shantanu.mane.200@outlook.com'
-        git status
-        git add .
-        git commit -m "chore(action) 🦈: today's daily leetcode question added"
-        git push
-        
-    - name: Report Status to Slack
-      run: |
-        curl -X POST -H 'Content-type: application/json' --data '{
-        "text": "🚀 *GitHub Action Update*\n🛠 *Workflow:* `${{ github.workflow }}`\n📂 *Repository:* `${{ github.repository }}`\n🔁 *Run #:* `${{ github.run_number }}`\n📊 *Status:* *${{ job.status }}*\n🔗 <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Logs>"
-        }' ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Get Daily LeetCode Problem
+        uses: RndmCodeGuy20/Daily-LC-Problem-Action@v2.2.1
+        with:
+          lang_choice: "C++"
+          # Strictly use one of these options : ["C++", "C", "Python3", "JavaScript", "Java"]
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'RndmCodeGuy20'
+          git config --global user.email 'shantanu.mane.200@outlook.com'
+          git status
+          git add .
+          git commit -m "chore(action) 🦈: today's daily leetcode question added"
+          git push
+
+      - name: Report Success Status to Slack
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{
+          "text": "🚀 *GitHub Action Update*\n🛠 *Workflow:* `${{ github.workflow }}`\n📂 *Repository:* `${{ github.repository }}`\n🔁 *Run #:* `${{ github.run_number }}`\n📊 *Status:* *${{ job.status }}* :white_check_mark: \n🔗 <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Logs>"
+          }' ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Report Failure Status to Slack
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{
+          "text": "🚀 *GitHub Action Update*\n🛠 *Workflow:* `${{ github.workflow }}`\n📂 *Repository:* `${{ github.repository }}`\n🔁 *Run #:* `${{ github.run_number }}`\n📊 *Status:* *${{ job.status }}* :x: \n🔗 <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Logs>"
+          }' ${{ secrets.SLACK_WEBHOOK_URL }}
