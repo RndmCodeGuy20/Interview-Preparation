@@ -1,0 +1,14 @@
+{
+	// Snippet to get the matrix traversal boilerplate
+	"Get Matrix Traversal Boilerplate": {
+		"scope": "cpp",
+		"prefix": "mat",
+		"body": [
+			"for (int i = 0; i < $1; i++) {",
+			"    for (int j = 0; j < $2; j++) {",
+			"        $3",
+			"    }",
+			"}"
+		]
+	}
+}
